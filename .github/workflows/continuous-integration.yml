@@ -11,17 +11,22 @@ jobs:
   cache-dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-      
-      - name: Install dependecies
-        run: npm install
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'npm'
+
+    - name: Cache NPM dependencies 
+      uses: actions/cache@v3
+      id: cache-primes
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      if: steps.cache-primes.outputs.cache-hit != 'true'
+      run: npm ci
         
   build:
     runs-on: ubuntu-latest
@@ -30,11 +35,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version-file: '.nvmrc'
           cache: 'npm'
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           
       - name: Install dependecies
         run: npm install  
@@ -48,7 +58,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
       - name: Install Dependencies
         run: npm install
         
@@ -61,7 +82,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
       - name: Install Dependencies
         run: npm install
         
