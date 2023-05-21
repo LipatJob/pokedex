@@ -11,6 +11,7 @@ jobs:
   Continuous-Integration:
     uses: ./.github/workflows/continuous-integration.yml
   Deploy-Production:
+    needs: [Continuous-Integration]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
