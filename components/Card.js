@@ -39,7 +39,7 @@ export default function Card({ id, name, photo, types }) {
       <img
         src={photo || "./pokemon-icon.png"}
         alt={`Image of ${name}`}
-        className="photo w-full h-auto mb-4 bg-gray-200 rounded-lg p-4"
+        className="photo w-full h-auto mb-4 bg-slate-100 rounded-lg p-4"
         width="200"
         height="200"
       />

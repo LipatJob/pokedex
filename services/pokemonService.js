@@ -1,4 +1,5 @@
 import { pipe } from "@/utils/Functional";
+import { encodePokemonName } from "@/utils/Text";
 import { toTitleCase } from "@/utils/Text";
 
 const getPokemons = async (filterBy, sortBy, page) => {
@@ -13,7 +14,11 @@ const getPokemons = async (filterBy, sortBy, page) => {
 };
 
 const filter = (pokemons, filter) => {
-  return pokemons;
+  return pokemons.filter(
+    (pokemon) =>
+      pokemon.id.toString().includes(filter) ||
+      pokemon.name.toLowerCase().includes(filter.toLowerCase())
+  );
 };
 
 const sort = (pokemons, sortBy) => {
@@ -48,7 +53,8 @@ const fetchAllPokemons = async () => {
   );
   return detailsRes.map((e) => ({
     id: e.id,
-    name: e.name,
+    tag: e.name,
+    name: encodePokemonName(e.name),
     photo:
       e.sprites.other["official-artwork"].front_default ||
       e.sprites.front_default,
