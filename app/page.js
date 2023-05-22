@@ -21,7 +21,7 @@ export default function Home() {
   }, [filterBy, sortBy, page]);
 
   return (
-    <div className="bg-gray-200 w-full h-full">
+    <div className="bg-slate-100 w-full h-full min-h-screen">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-row py-6 items-center">
           <p className="text-4xl font-bold">Pokedex</p>
