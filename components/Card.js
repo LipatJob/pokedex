@@ -1,3 +1,8 @@
+import {
+  encodePokemonName,
+  getContrastTextColor,
+  toTitleCase,
+} from "@/utils/Text";
 import Image from "next/image";
 import React from "react";
 
@@ -26,26 +31,37 @@ export default function Card({ id, name, photo, types }) {
   };
   return (
     <div
-      className="flex flex-col max-w-[200px] items-center bg-white pokemon rounded-lg p-4"
-      id={name}
+      className="pokemon flex flex-col max-w-[300px] items-center bg-white rounded-lg p-4 hover:-translate-y-2 transition-all hover:shadow-lg"
+      id={id}
+      name={name}
     >
+      {/* https://pixabay.com/vectors/pokemon-icon-design-symbol-sign-4657023/ */}
       <img
-        src={photo}
+        src={photo || "./pokemon-icon.png"}
         alt={`Image of ${name}`}
-        className="photo w-full h-auto"
+        className="photo w-full h-auto mb-4 bg-gray-200 rounded-lg p-4"
         width="200"
         height="200"
       />
-      <p className="id">{"#" + String(id).padStart(4, "0")}</p>
-      <p className="name font-semibold text-xl">{name}</p>
+      <div className="flex flex-col items-center mb-2">
+        <p className="id font-medium text-xs m-0">
+          {"#" + String(id).padStart(4, "0")}
+        </p>
+        <p className="name font-semibold text-xl m-0">
+          {encodePokemonName(name)}
+        </p>
+      </div>
+
       <div className="types flex flex-row gap-4 ">
         {types.map((type) => (
           <div
             key={type}
-            className={` border-2 py-1 px-2 rounded-lg`}
-            style={{ borderColor: typeColorMapping[type] }}
+            className="w-24 border-2 py-1 px-2 rounded-lg text-center"
+            style={{ backgroundColor: typeColorMapping[type] }}
           >
-            <p>{type}</p>
+            <p style={{ color: getContrastTextColor(typeColorMapping[type]) }}>
+              {toTitleCase(type)}
+            </p>
           </div>
         ))}
       </div>
