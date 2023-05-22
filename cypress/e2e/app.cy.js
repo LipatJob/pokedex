@@ -1,7 +1,7 @@
 const URL = "http://localhost:3000";
 
-const Given = it;
-const When = it;
+const Given = before;
+const When = beforeEach;
 const Then = it;
 
 describe("The Home Page", () => {
@@ -20,36 +20,36 @@ function cardShouldContainInformation(info) {
     });
   });
 }
-
-describe("Pokemon Card List View", () => {
-  Given("Given Pokemons bulbasaur, ivysaur, and venusaur", () => {});
-  When("When I open the website", () => {
-    cy.intercept("/pokemon")
-      .as("pokemon")
-      .visit(URL)
-      .wait(15000)
-      .then(() => {
-        cardShouldContainInformation({
-          id: "1",
-          name: "bulbasaur",
-          photo:
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-          types: ["grass", "poison"],
-        });
-        cardShouldContainInformation({
-          id: "2",
-          name: "ivysaur",
-          photo:
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-          types: ["grass", "poison"],
-        });
-        cardShouldContainInformation({
-          id: "3",
-          name: "venusaur",
-          photo:
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
-          types: ["grass", "poison"],
-        });
-      });
+context("Given Pokemons bulbasaur, ivysaur, and venusaur", () => {
+  beforeEach("When I open the website", () => {
+    cy.intercept("https://pokeapi.co/api/v2/pokemon").as("pokemon");
+    cy.visit(URL).wait("@pokemon", { requestTimeout: 10000 });
+  });
+  it("Then I should be able to see a card with the following information", () => {
+    cardShouldContainInformation({
+      id: "1",
+      name: "bulbasaur",
+      photo:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      types: ["grass", "poison"],
+    });
+  });
+  it("Then I should be able to see a card with the following information", () => {
+    cardShouldContainInformation({
+      id: "2",
+      name: "ivysaur",
+      photo:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+      types: ["grass", "poison"],
+    });
+  });
+  it("Then I should be able to see a card with the following information", () => {
+    cardShouldContainInformation({
+      id: "3",
+      name: "venusaur",
+      photo:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+      types: ["grass", "poison"],
+    });
   });
 });
