@@ -9,8 +9,8 @@ export default function Sort({ selected, onSortSelected }) {
         onChange={(e) => onSortSelected(e.currentTarget.value)}
         selected={selected}
       >
-        <option value="ID_ASC">Pokemon ID (Lowest First)</option>
-        <option value="ID_DSC">Pokemon ID (Highest First)</option>
+        <option value="ID_ASC">ID (Lowest First)</option>
+        <option value="ID_DSC">ID (Highest First)</option>
         <option value="NAME_ASC">Name (A to Z)</option>
         <option value="NAME_DSC">Name (Z to A)</option>
       </select>
