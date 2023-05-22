@@ -74,12 +74,12 @@ Feature("Sort Pokemons", () => {
     });
     Then("Zygardes hould come first", () => {
       cy.get(".pokemon")
-        .contains(".pokemon", "Zygarde (Complete)")
+        .contains(".pokemon", "Zygarde (Complete)", { matchCase: false })
         .should("exist");
     });
     And("Zweilous should appear next", () => {
       cy.get(".pokemon")
-        .contains(".pokemon", "Zygarde (Complete)")
+        .contains(".pokemon", "Zygarde (Complete)", { matchCase: false })
         .nextAll()
         .contains(".pokemon", "Zweilous")
         .should("exist");
