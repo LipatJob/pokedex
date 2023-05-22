@@ -4,6 +4,7 @@ import Sort from "@/components/Sort";
 import useAsyncData from "@/utils/useAsyncData";
 import { getPokemons } from "@/services/pokemonService";
 import { useEffect, useState } from "react";
+import SearchFilter from "@/components/SearchFilter";
 
 export default function Home() {
   const pokemons = useAsyncData(getPokemons);
@@ -26,6 +27,7 @@ export default function Home() {
           <p className="text-4xl">Pokedex</p>
           <div className="ml-auto">
             <Sort selected={sortBy} onSortSelected={setSortBy} />
+            <SearchFilter onSubmit={(filterText) => setFilterBy(filterText)} />
           </div>
         </div>
 
