@@ -7,7 +7,7 @@ export default function SearchFilter({ onSubmit }) {
       <label className="text-xl">Search</label>
       <input
         type="search"
-        className="search sort rounded py-2 px-4 text-lg"
+        className="search rounded py-2 px-4 text-lg"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Enter pokemon name or ID"
