@@ -4,7 +4,7 @@ import loadPokemons from "../utils/loadPokemons";
 
 beforeEach(loadPokemons);
 
-Feature("Sort Pokemons", () => {
+Feature("Search and Filter Pokemon", () => {
   beforeEach(() => {
     cy.visit(URL);
   });

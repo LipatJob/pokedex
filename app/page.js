@@ -5,12 +5,15 @@ import useAsyncData from "@/utils/useAsyncData";
 import { getPokemons } from "@/services/pokemonService";
 import { useEffect, useState } from "react";
 import SearchFilter from "@/components/SearchFilter";
+import PokemonDetails from "@/components/PokemonDetails";
 
 export default function Home() {
   const pokemons = useAsyncData(getPokemons);
   const [sortBy, setSortBy] = useState("ID_ASC");
   const [filterBy, setFilterBy] = useState("");
   const [page, setPage] = useState(1);
+  const [detailsOpened, setDetailsOpened] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     pokemons.request(filterBy, sortBy, page);
@@ -32,8 +35,15 @@ export default function Home() {
             <Sort selected={sortBy} onSortSelected={setSortBy} />
           </div>
         </div>
-
-        {pokemons.loading && <>Loading</>}
+        {detailsOpened && (
+          <div className="z-10">
+            <PokemonDetails
+              id={selectedId}
+              onClose={() => setDetailsOpened(false)}
+            />
+          </div>
+        )}
+        {pokemons.loading && <div className="h-20 w-20">Loading</div>}
         {pokemons.data && (
           <div className="flex flex-row gap-4 max-w-full flex-wrap justify-center">
             {pokemons.data.map((pokemon) => (
@@ -43,11 +53,17 @@ export default function Home() {
                 name={pokemon.name}
                 photo={pokemon.photo}
                 types={pokemon.types}
+                onClick={() => {
+                  setSelectedId(pokemon.id);
+                  setDetailsOpened(true);
+                }}
               />
             ))}
           </div>
         )}
-        {pokemons.error && <>Error: {pokemons.error}</>}
+        {pokemons.error && (
+          <div className="h-20 w-20">Error: {pokemons.error}</div>
+        )}
       </div>
     </div>
   );
