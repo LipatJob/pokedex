@@ -30,76 +30,76 @@ Feature("Pokemon Card List View ", () => {
     });
   }
 
-  // Given("Pokemons bulbasaur, ivysaur, and venusaur", () => {
-  //   When("I open the website", () => {
-  //     cy.visit(URL);
-  //   });
-  //   Then(
-  //     "I should be able to see a card with the following information",
-  //     () => {
-  //       cardShouldContainInformation({
-  //         id: "1",
-  //         name: "bulbasaur",
-  //         photo:
-  //           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-  //         types: ["grass", "poison"],
-  //       });
-  //     }
-  //   );
-  //   And("I should be able to see a card with the following information", () => {
-  //     cardShouldContainInformation({
-  //       id: "2",
-  //       name: "ivysaur",
-  //       photo:
-  //         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-  //       types: ["grass", "poison"],
-  //     });
-  //   });
-  //   And("I should be able to see a card with the following information", () => {
-  //     cardShouldContainInformation({
-  //       id: "3",
-  //       name: "venusaur",
-  //       photo:
-  //         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
-  //       types: ["grass", "poison"],
-  //     });
-  //   });
-  // });
+  Given("Pokemons bulbasaur, ivysaur, and venusaur", () => {
+    When("I open the website", () => {
+      cy.visit(URL);
+    });
+    Then(
+      "I should be able to see a card with the following information",
+      () => {
+        cardShouldContainInformation({
+          id: "1",
+          name: "bulbasaur",
+          photo:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+          types: ["grass", "poison"],
+        });
+      }
+    );
+    And("I should be able to see a card with the following information", () => {
+      cardShouldContainInformation({
+        id: "2",
+        name: "ivysaur",
+        photo:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+        types: ["grass", "poison"],
+      });
+    });
+    And("I should be able to see a card with the following information", () => {
+      cardShouldContainInformation({
+        id: "3",
+        name: "venusaur",
+        photo:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+        types: ["grass", "poison"],
+      });
+    });
+  });
 });
 
 Feature("Sort Pokemons", () => {
   beforeEach(() => {
     cy.visit(URL);
   });
-  // Given("three Pokemons with IDs 2, 1, and 3", () => {
-  //   When("I sort the Pokemons by ID ascending", () => {
-  //     cy.get(".sort").select("ID_ASC");
-  //   });
-  //   Then("Pokemon with ID 1 should appear first", () => {
-  //     cy.get(".pokemon#1").should("exist");
-  //   });
-  //   And("Pokemon with ID 2 should appear next", () => {
-  //     cy.get(".pokemon#1").next(".pokemon#2").should("exist");
-  //   });
-  //   And("followed by Pokemon with ID 3", () => {
-  //     cy.get(".pokemon#2").next(".pokemon#3").should("exist");
-  //   });
-  // });
+  Given("three Pokemons with IDs 2, 1, and 3", () => {
+    When("I sort the Pokemons by ID ascending", () => {
+      cy.get(".sort").select("ID_ASC");
+    });
+    Then("Pokemon with ID 1 should appear first", () => {
+      cy.get(".pokemon#1").should("exist");
+    });
+    And("Pokemon with ID 2 should appear next", () => {
+      cy.get(".pokemon#1").next(".pokemon#2").should("exist");
+    });
+    And("followed by Pokemon with ID 3", () => {
+      cy.get(".pokemon#2").next(".pokemon#3").should("exist");
+    });
+  });
 
-  // Given("three Pokemons with IDs 10271, 10270, and 10269", () => {
-  //   When("I sort the Pokemons by ID descending", () => {
-  //     cy.get(".sort").select("ID_DSC");
-  //   });
-  //   Then("Pokemon with ID 10271 should appear first", () => {
-  //     cy.get(".pokemon#10271").should("exist");
-  //   });
-  //   And("Pokemon with ID 10270 should appear next", () => {
-  //     cy.get(".pokemon#10271").next(".pokemon#10270").should("exist");
-  //   });
-  //   And("followed by Pokemon with ID 10269", () => {
-  //     cy.get(".pokemon#10270").next(".pokemon#10269").should("exist");
-  //   });
-  // });
+  Given("three Pokemons with IDs 10271, 10270, and 10269", () => {
+    When("I sort the Pokemons by ID descending", () => {
+      cy.get(".sort").select("ID_DSC");
+    });
+    Then("Pokemon with ID 10271 should appear first", () => {
+      cy.get(".pokemon#10271").should("exist");
+    });
+    And("Pokemon with ID 10270 should appear next", () => {
+      cy.get(".pokemon#10271").next(".pokemon#10270").should("exist");
+    });
+    And("followed by Pokemon with ID 10269", () => {
+      cy.get(".pokemon#10270").next(".pokemon#10269").should("exist");
+    });
+  });
 
   Given("Pokemons Abomasnow, Abra, Absol and Accelgor ", () => {
     When("I sort the Pokemons by Name ascending", () => {
