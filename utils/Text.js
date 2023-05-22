@@ -15,6 +15,10 @@ function encodePokemonName(name) {
   return primaryName + " (" + details + ")";
 }
 
+function encodePokemonId(id) {
+  return "#" + String(id).padStart(4, "0");
+}
+
 function getContrastTextColor(backgroundColor) {
   // Convert the background color to its RGB components
   var rgb = backgroundColor.match(/\d+/g);
@@ -33,4 +37,4 @@ function getContrastTextColor(backgroundColor) {
   }
 }
 
-export { toTitleCase, encodePokemonName, getContrastTextColor };
+export { toTitleCase,encodePokemonId, encodePokemonName, getContrastTextColor };
