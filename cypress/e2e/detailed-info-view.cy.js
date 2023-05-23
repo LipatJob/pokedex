@@ -28,7 +28,7 @@ Feature("Detailed Info View", () => {
   }
 
   Given("the pokemons bulbasaur, ivysaur, charmander and charmeleon", () => {
-    When("when I select bulbasaur", () => {
+    When("I select bulbasaur", () => {
       cy.get(".pokemon#1").click();
     });
     Then("I should get the following information:", () => {

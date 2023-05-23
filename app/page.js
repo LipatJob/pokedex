@@ -5,12 +5,21 @@ import { useEffect, useState } from "react";
 import SearchFilter from "@/components/SearchFilter";
 import PokemonDetails from "@/components/PokemonDetails";
 import PokemonList from "@/components/PokemonList";
+import { getAdjacent } from "@/services/pokemonService";
 
 export default function Home() {
   const [sortBy, setSortBy] = useState("ID_ASC");
   const [filterBy, setFilterBy] = useState("");
   const [detailsOpened, setDetailsOpened] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [adjacent, setAdjacent] = useState(null);
+
+  useEffect(() => {
+    const update = async () => {
+      setAdjacent(await getAdjacent(selectedId, filterBy, sortBy));
+    };
+    update();
+  }, [selectedId]);
 
   function reset() {
     setSortBy("ID_ASC");
@@ -37,10 +46,14 @@ export default function Home() {
           <div className="z-10">
             <PokemonDetails
               id={selectedId}
+              setId={setSelectedId}
+              next={adjacent.next}
+              previous={adjacent.previous}
               onClose={() => setDetailsOpened(false)}
             />
           </div>
         )}
+
         <PokemonList
           sortBy={sortBy}
           filterBy={filterBy}

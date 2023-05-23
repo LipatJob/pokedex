@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { getPokemons } from "@/services/pokemonService";
+import PokemonDetails from "./PokemonDetails";
 
 export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
   const [pokemons, setPokemons] = useState([]);
@@ -61,7 +62,7 @@ export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
   return (
     <div>
       <div className="pokemon-list flex flex-row gap-4 max-w-full flex-wrap justify-center">
-        {pokemons.map((pokemon) => (
+        {pokemons.map((pokemon, index) => (
           <Card
             key={pokemon.id}
             id={pokemon.id}
