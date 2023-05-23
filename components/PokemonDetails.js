@@ -28,14 +28,14 @@ export default function PokemonDetails({ id, onClose }) {
       }}
     >
       <div
-        className="w-[600px] relative bg-white mx-auto flex flex-col  rounded-lg shadow-lg z-20"
+        className=" sm:w-[600px] relative bg-white mx-auto flex flex-col  rounded-lg shadow-lg z-20 overflow-y-scroll scroll my-4"
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
         <button
           onClick={onClose}
-          className="absolute -top-2 -right-2 bg-red-600 rounded-full w-8 h-8 text-white hover:scale-110 transition-all"
+          className="absolute top-0 right-0 bg-red-600 rounded-lg w-8 h-8 text-white hover:scale-110 transition-all"
         >
           X
         </button>
@@ -46,11 +46,14 @@ export default function PokemonDetails({ id, onClose }) {
               className="flex"
               style={{ backgroundColor: typeColorMapping[details.types[0]] }}
             >
-              <img src={details.photo} className="w-[200px] mx-auto" />
+              <img
+                src={details.photo || "./pokemon-icon.png"}
+                className="w-[200px] mx-auto p-4"
+              />
             </div>
             <div className="p-8 pt-4 flex flex-col gap-6">
               <div className="info flex flex-col items-center">
-                <p className="mb-2">
+                <p className="mb-2 text-center">
                   <span className="text-2xl font-bold name">
                     {encodePokemonName(details.name)}{" "}
                   </span>
@@ -122,7 +125,7 @@ export default function PokemonDetails({ id, onClose }) {
 
               <div className="weaknesses">
                 <p className="font-semibold text-lg mb-3"> Weaknesses</p>
-                <div className="flex gap-2 flex-wrap">
+                <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
                   {details.weaknesses.map((weakness) => (
                     <TypePill type={weakness} key={weakness} />
                   ))}

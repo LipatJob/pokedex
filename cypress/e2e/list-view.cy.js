@@ -1,8 +1,5 @@
 import { URL } from "../utils/constants";
 import { Feature, Given, When, Then, And } from "../utils/gherkin";
-import loadPokemons from "../utils/loadPokemons";
-
-beforeEach(loadPokemons);
 
 Feature("Pokemon Card List View ", () => {
   function cardShouldContainInformation(info) {

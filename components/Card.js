@@ -10,10 +10,9 @@ import React from "react";
 import TypePill from "./TypePill";
 
 export default function Card({ id, name, photo, types, onClick }) {
-
   return (
     <div
-      className="pokemon flex flex-col max-w-[240px] items-center bg-white rounded-lg p-4 hover:-translate-y-2 transition-all hover:shadow-lg cursor-pointer z-0"
+      className="pokemon flex flex-col max-w-[230px] items-center bg-white rounded-lg p-4 hover:-translate-y-2 transition-all hover:shadow-lg cursor-pointer z-0"
       id={id}
       name={name}
       onClick={onClick}
@@ -26,10 +25,8 @@ export default function Card({ id, name, photo, types, onClick }) {
         width="200"
         height="200"
       />
-      <div className="flex flex-col items-center mb-2">
-        <p className="id font-medium text-xs m-0">
-          {encodePokemonId(id)}
-        </p>
+      <div className="flex flex-col items-center mb-2 text-center">
+        <p className="id font-medium text-xs m-0">{encodePokemonId(id)}</p>
         <p className="name font-semibold text-xl m-0">
           {encodePokemonName(name)}
         </p>
@@ -37,7 +34,7 @@ export default function Card({ id, name, photo, types, onClick }) {
 
       <div className="types flex flex-row gap-4 ">
         {types.map((type) => (
-          <TypePill type={type} key={type}/>
+          <TypePill type={type} key={type} />
         ))}
       </div>
     </div>

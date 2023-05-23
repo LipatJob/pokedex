@@ -5,12 +5,16 @@ import { getWeaknesses } from "./weaknessService";
 
 const getPokemons = async (filterBy = "", sortBy = "ID_ASC", page = 1) => {
   const pokemons = await fetchAllPokemon();
-  return asyncPipe(
+  const data = await asyncPipe(
     (e) => filter(e, filterBy),
     (e) => sort(e, sortBy),
     (e) => paginate(e, page),
-    (e) => getAllPokemonDetails(e.map((f) => f.id))
+    async (e) => ({
+      pageCount: e.pageCount,
+      data: await getAllPokemonDetails(e.data.map((f) => f.id)),
+    })
   )(pokemons);
+  return data;
 };
 
 const fetchAllPokemon = async () => {
@@ -48,8 +52,12 @@ const sort = (pokemons, sortBy) => {
 };
 
 const paginate = (pokemons, page) => {
-  const page_size = 10;
-  return pokemons.slice((page - 1) * page_size, page * page_size);
+  const pageSize = 10;
+  const pageCount = Math.floor(pokemons.length / pageSize) + 1;
+  return {
+    pageCount: pageCount,
+    data: pokemons.slice((page - 1) * pageSize, page * pageSize),
+  };
 };
 
 const getAllPokemonDetails = async (ids) => {
