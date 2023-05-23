@@ -54,7 +54,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-slate-100 w-full h-full min-h-[125vh]">
+    <div className="bg-slate-100 w-full h-full min-h-[110vh]">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-row py-6 items-center">
           <p className="text-4xl font-bold">Pokedex</p>
