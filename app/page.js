@@ -73,11 +73,7 @@ export default function Home() {
             />
           </div>
         )}
-        {pokemons.length == 0 && (
-          <div className="flex flex-col w-full h-full">
-            <p>There doesn{"'"}t seem to be any Pokemons here</p>
-          </div>
-        )}
+
         <div className="pokemon-list flex flex-row gap-4 max-w-full flex-wrap justify-center">
           {pokemons.map((pokemon) => (
             <Card
