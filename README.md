@@ -3,7 +3,7 @@ A website where Pokemon trainers could find and view pokemons.
 https://pokedex-job.vercel.app/
 
 ## Details
-In this website, you could view the list of pokemons in the home page. The website initially loads 10 pokemons, but you could load more pokemons by scrolling down. You could also search pokemons by their name and id. Additionally you can sort the Pokemons by name or ID. 
+In this website, you could view the list of pokemons in the home page. The website initially loads 10 pokemons, but you could load more pokemons by scrolling down. You could also search pokemons by their name and id. Additionally you can sort the Pokemons by name or ID. The websites uses [PokeAPI](https://pokeapi.co/) to fetch information about the pokemon.
 
 ## Getting Started
 
