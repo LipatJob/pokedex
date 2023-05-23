@@ -4,7 +4,6 @@ export default function SearchFilter({ onSubmit }) {
   const [searchText, setSearchText] = useState();
   return (
     <div className="flex flex-row gap-3 items-center">
-      <label className="text-xl">Search</label>
       <input
         type="search"
         className="search rounded py-2 px-4 text-lg"
