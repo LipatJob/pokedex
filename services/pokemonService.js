@@ -30,7 +30,9 @@ const filter = (pokemons, filter) => {
   return pokemons.filter(
     (pokemon) =>
       pokemon.id.toString().includes(filter) ||
-      pokemon.name.toLowerCase().includes(filter.toLowerCase())
+      encodePokemonName(pokemon.name)
+        .toLowerCase()
+        .includes(filter.toLowerCase())
   );
 };
 
