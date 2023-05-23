@@ -6,7 +6,7 @@ export default function StatBar({ name, label, value }) {
   return (
     <div className="flex flex-row items-center gap-8">
       <p className="w-24">{label}</p>
-      <p className="font-semibold stat" id={name}>
+      <p className="font-semibold stat w-12 text-center" id={name}>
         {value}
       </p>
       <div className="flex-grow">

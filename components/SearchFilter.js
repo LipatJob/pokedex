@@ -17,7 +17,7 @@ export default function SearchFilter({ onSubmit }) {
           onChange={(e) => setSearchText(e.target.value)}
           placeholder="Enter pokemon name or ID"
         />
-        {searchText !== "" && (
+        {searchText !== "" && searchText != null && (
           <button
             type="button"
             className="absolute right-3 top-0 h-full flex"
