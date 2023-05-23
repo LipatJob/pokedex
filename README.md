@@ -40,8 +40,8 @@ In this website, you could view the list of pokemons in the home page. The websi
 * Responsive User Interface Design
   * The website is usable on desktop and mobile phones 
 
-## Help
-Please feel free to create issues for any bugs or issues with the program.
+## Bugs and Suggestions
+Please feel free to create issues for any bug reports or suggestions for the website.
 
 ## Author
 Job Lipat
