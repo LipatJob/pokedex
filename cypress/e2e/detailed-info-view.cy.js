@@ -3,7 +3,8 @@ import { Feature, Given, When, Then, And } from "../utils/gherkin";
 
 Feature("Detailed Info View", () => {
   beforeEach(() => {
-    cy.visit(URL);
+    cy.intercept("https://pokeapi.co/api/v2/pokemon*").as("pokemon");
+    cy.visit(URL).wait("@pokemon");
   });
   function containsFollowingInformation(info) {
     cy.get(".pokemonDetails").within(() => {

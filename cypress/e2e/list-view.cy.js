@@ -2,6 +2,11 @@ import { URL } from "../utils/constants";
 import { Feature, Given, When, Then, And } from "../utils/gherkin";
 
 Feature("Pokemon Card List View ", () => {
+  beforeEach(() => {
+    cy.intercept("https://pokeapi.co/api/v2/pokemon*").as("pokemon");
+    cy.visit(URL).wait("@pokemon");
+  });
+
   function cardShouldContainInformation(info) {
     cy.get(`.pokemon#${info.id}`).within(() => {
       cy.get(".id").contains(info.id);

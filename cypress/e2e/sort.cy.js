@@ -3,8 +3,10 @@ import { Feature, Given, When, Then, And } from "../utils/gherkin";
 
 Feature("Sort Pokemons", () => {
   beforeEach(() => {
-    cy.visit(URL);
+    cy.intercept("https://pokeapi.co/api/v2/pokemon*").as("pokemon");
+    cy.visit(URL).wait("@pokemon");
   });
+
   Given("three Pokemons with IDs 2, 1, and 3", () => {
     When("I sort the Pokemons by ID ascending", () => {
       cy.get(".sort").select("ID_ASC");

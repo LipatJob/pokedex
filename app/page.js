@@ -12,10 +12,18 @@ export default function Home() {
   const [detailsOpened, setDetailsOpened] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
+  function reset() {
+    setSortBy("ID_ASC");
+    setFilterBy("");
+  }
+
   return (
-    <div className="bg-slate-100 w-full h-full ">
-      <div className="max-w-screen-xl mx-auto px-4 min-h-screen">
-        <div className="flex flex-row py-6 items-center gap-3">
+    <div className="bg-slate-100 w-full h-full min-h-[105vh] main-content">
+      <div className="max-w-screen-xl mx-auto px-4 ">
+        <div
+          className="flex flex-row py-6 items-center gap-3 cursor-pointer"
+          onClick={reset}
+        >
           <img src="/pokemon.png" className="h-10 w-auto" />
           <p className="text-4xl font-bold">Pokedex</p>
         </div>

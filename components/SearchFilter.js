@@ -3,29 +3,28 @@ import React, { useState } from "react";
 export default function SearchFilter({ onSubmit }) {
   const [searchText, setSearchText] = useState();
 
-  function clear() {
+  function reset() {
     setSearchText("");
     onSubmit("");
   }
+  
   return (
     <div className="flex flex-row gap-3 items-center">
       <div className="relative">
         <input
           type="text"
-          className="search rounded py-2 px-4 text-lg w-full sm:w-72"
+          className="search rounded py-2 px-4 text-lg w-full sm:w-80"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          placeholder="Enter pokemon name or ID"
+          placeholder="Pokemon name or ID"
         />
-        {searchText !== "" && searchText != null && (
-          <button
-            type="button"
-            className="absolute right-3 top-0 h-full flex"
-            onClick={clear}
-          >
-            <p className="my-auto text-slate-500">Clear</p>
-          </button>
-        )}
+        <button
+          type="button"
+          className="absolute right-3 top-0 h-full hidden sm:flex"
+          onClick={reset}
+        >
+          <p className="my-auto text-slate-500">Reset</p>
+        </button>
       </div>
 
       <button

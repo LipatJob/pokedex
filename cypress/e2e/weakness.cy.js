@@ -3,8 +3,10 @@ import { Feature, Given, When, Then, And } from "../utils/gherkin";
 
 Feature("View weakness", () => {
   beforeEach(() => {
-    cy.visit(URL);
+    cy.intercept("https://pokeapi.co/api/v2/pokemon*").as("pokemon");
+    cy.visit(URL).wait("@pokemon");
   });
+
   Given(
     "the pokemons bulbasaur, charmander, squirtle, ratata, and ekans",
     () => {

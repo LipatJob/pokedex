@@ -1,5 +1,5 @@
 import { asyncPipe, pipe } from "@/utils/Functional";
-import { encodePokemonName } from "@/utils/Text";
+import { encodePokemonId, encodePokemonName } from "@/utils/Text";
 import { toTitleCase } from "@/utils/Text";
 import { getWeaknesses } from "./weaknessService";
 
@@ -36,7 +36,8 @@ const filter = (pokemons, filter) => {
       pokemon.id.toString().includes(filter) ||
       encodePokemonName(pokemon.name)
         .toLowerCase()
-        .includes(filter.toLowerCase())
+        .includes(filter.toLowerCase()) ||
+      encodePokemonId(pokemon.id).includes(filter)
   );
 };
 
