@@ -12,7 +12,8 @@ Feature("Pokemon Card List View ", () => {
   });
   Given("that I am at the home page ", () => {
     before(() => {
-      cy.visit(URL);
+      cy.intercept("https://pokeapi.co/api/v2/pokemon/*").as("pokemon");
+      cy.visit(URL).wait("@pokemon");
     });
     When("I scroll down at the end of the page", () => {
       cy.scrollTo("bottom");
