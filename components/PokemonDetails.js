@@ -42,7 +42,7 @@ export default function PokemonDetails({ id, setId, previous, next, onClose }) {
           </div>
         )}
         <div
-          className=" sm:w-[600px] relative bg-white mx-auto flex flex-col  rounded-lg shadow-lg z-20 overflow-y-auto my-4"
+          className=" sm:w-[600px] relative bg-white mx-auto flex flex-col  rounded-lg shadow-lg z-20 max-h-screen overflow-y-auto my-4"
           onClick={(e) => {
             e.stopPropagation();
           }}

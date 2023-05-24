@@ -1,6 +1,5 @@
 import { asyncPipe, pipe } from "@/utils/Functional";
 import { encodePokemonId, encodePokemonName } from "@/utils/Text";
-import { toTitleCase } from "@/utils/Text";
 import { getWeaknesses } from "./weaknessService";
 
 const getPokemons = async (filterBy = "", sortBy = "ID_ASC", page = 1) => {
@@ -8,41 +7,13 @@ const getPokemons = async (filterBy = "", sortBy = "ID_ASC", page = 1) => {
   const data = await asyncPipe(
     (e) => filter(e, filterBy),
     (e) => sort(e, sortBy),
-    (e) => link(e),
     (e) => paginate(e, page),
     async (e) => ({
-      pageCount: e.pageCount,
-      data: await Promise.all(
-        e.data.map(async (f) => {
-          const details = await getPokemonDetails(f.id);
-          return {
-            ...f,
-            ...details,
-          };
-        })
-      ),
+      ...e,
+      data: await getAllPokemonDetails(e.data.map((f) => f.id)),
     })
   )(pokemons);
   return data;
-};
-
-const getAdjacent = async (id, filterBy, sortBy) => {
-  if (id == null) {
-    return {
-      previous: 0,
-      next: 0,
-    };
-  }
-  const pokemons = await pipe(
-    (e) => filter(e, filterBy),
-    (e) => sort(e, sortBy)
-  )(await fetchAllPokemon());
-
-  const index = pokemons.findIndex((e) => e.id === id);
-  return {
-    previous: index - 1 >= 0 && pokemons[index - 1].id,
-    next: index + 1 < pokemons.length && pokemons[index + 1].id,
-  };
 };
 
 const fetchAllPokemon = async () => {
@@ -78,14 +49,6 @@ const sort = (pokemons, sortBy) => {
   }[sortBy];
   pokemons.sort(comparator);
   return pokemons;
-};
-
-const link = (pokemons) => {
-  return pokemons.map((e, index) => ({
-    ...e,
-    previous: index - 1 >= 0 && pokemons[index - 1].id,
-    next: index + 1 < pokemons.length && pokemons[index + 1].id,
-  }));
 };
 
 const paginate = (pokemons, page) => {
@@ -124,6 +87,25 @@ const getPokemonDetails = async (id) => {
       speed: parseInt(data.stats[5].base_stat),
     },
     weaknesses: getWeaknesses(data.types.map((f) => f.type.name)),
+  };
+};
+
+const getAdjacent = async (id, filterBy, sortBy) => {
+  if (id == null) {
+    return {
+      previous: 0,
+      next: 0,
+    };
+  }
+  const pokemons = await pipe(
+    (e) => filter(e, filterBy),
+    (e) => sort(e, sortBy)
+  )(await fetchAllPokemon());
+
+  const index = pokemons.findIndex((e) => e.id === id);
+  return {
+    previous: index - 1 >= 0 && pokemons[index - 1].id,
+    next: index + 1 < pokemons.length && pokemons[index + 1].id,
   };
 };
 
