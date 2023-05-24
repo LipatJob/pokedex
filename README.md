@@ -1,9 +1,24 @@
+[![Continouous Integration](https://github.com/LipatJob/pokedex/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/LipatJob/pokedex/actions/workflows/continuous-integration.yml)
+[![Continouous Delivery](https://github.com/LipatJob/pokedex/actions/workflows/vercel-deployment.yml/badge.svg)](https://github.com/LipatJob/pokedex/actions/workflows/vercel-deployment.yml)
+
 # Pokedex
 A website where Pokemon trainers could find and view pokemons.
-https://pokedex-job.vercel.app/
+
+Live: https://pokedex-job.vercel.app/
+
 
 ## Details
-In this website, you could view the list of pokemons in the home page. The website initially loads 10 pokemons, but you could load more pokemons by scrolling down. You could also search pokemons by their name and id. Additionally you can sort the Pokemons by name or ID. The websites uses [PokeAPI](https://pokeapi.co/) to fetch information about the pokemon.
+Welcome to the Pokedex website! This site allows you to explore a comprehensive list of Pokemons. Here's what you can do:
+
+* View Pokemons: On the home page, you will find an initial list of 10 Pokemons. As you scroll down, more Pokemons will be loaded dynamically, providing an endless browsing experience.
+
+* Search Pokemons: Use the search functionality to find specific Pokemons by their name or ID. Simply enter the desired search term, and the list will update to display the matching results.
+
+* Sort Pokemons: You can sort the Pokemons based on their name or ID. Choose the sorting option that suits your preference, and the list will be rearranged accordingly.
+
+* PokeAPI Integration: This website leverages the PokeAPI to fetch comprehensive information about the Pokemons, ensuring accurate and up-to-date details.
+
+Feel free to explore the fascinating world of Pokemons and dive into their unique characteristics and attributes. Start your journey now with the Pokedex website!
 
 ## Getting Started
 
@@ -39,6 +54,9 @@ In this website, you could view the list of pokemons in the home page. The websi
   * Created a service layer to abstract the API fetching logic from the user interface 
 * Responsive User Interface Design
   * The website is usable on desktop and mobile phones 
+
+## Planned Features
+Please see the [issues the repository](https://github.com/LipatJob/pokedex/issues) for planned features  
 
 ## Bugs and Suggestions
 Please feel free to create issues for any bug reports or suggestions for the website.
