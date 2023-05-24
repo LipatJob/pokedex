@@ -55,6 +55,9 @@ Feel free to explore the fascinating world of Pokemons and dive into their uniqu
 * Responsive User Interface Design
   * The website is usable on desktop and mobile phones 
 
+## Planned Features
+Please see the [issues the repository](https://github.com/LipatJob/pokedex/issues) for planned features  
+
 ## Bugs and Suggestions
 Please feel free to create issues for any bug reports or suggestions for the website.
 
