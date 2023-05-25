@@ -28,7 +28,7 @@ Feel free to explore the fascinating world of Pokemons and dive into their uniqu
 
 ### Running the Program
 * Run the program in development mode using `npm run dev`
-* Run the program in production mode using `npm build; npm run start`
+* Run the program in production mode using `npm run build; npm run start`
 
 ### Executing Tests
 * Browse through the tests using the Cypress UI using `npm run cypress`
