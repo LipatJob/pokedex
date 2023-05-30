@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { getPokemons } from "@/services/pokemonService";
 import PokemonDetails from "./PokemonDetails";
+import Loading from "./Loading";
 
 export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
   const [pokemons, setPokemons] = useState([]);
@@ -25,6 +26,9 @@ export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
 
   const loadNewPage = async () => {
     setIsLoading(true);
+    if (page == 1) {
+      setPokemons([]);
+    }
     const { data: newPokemons, pageCount: newPageCount } = await getPokemons(
       filterBy,
       sortBy,
@@ -41,7 +45,7 @@ export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading) {
+    if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
       nextPage();
     }
   };
@@ -62,19 +66,22 @@ export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
   return (
     <div>
       <div className="pokemon-list flex flex-row gap-4 max-w-full flex-wrap justify-center">
-        {pokemons.map((pokemon, index) => (
+        {pokemons.map((pokemon) => (
           <Card
             key={pokemon.id}
             id={pokemon.id}
-            name={pokemon.name}
-            photo={pokemon.photo}
-            types={pokemon.types}
             onClick={() => {
               setSelectedId(pokemon.id);
             }}
           />
         ))}
       </div>
+
+      {isLoading && (
+        <div className="w-full flex justify-center my-4">
+          <Loading />
+        </div>
+      )}
       {!isLoading && pokemons.length == 0 && (
         <div className="text-center my-10">
           <p className="text-2xl text-slate-500">
@@ -82,7 +89,7 @@ export default function PokemonList({ sortBy, filterBy, setSelectedId }) {
           </p>
         </div>
       )}
-      {page < pageCount && (
+      {!isLoading && page < pageCount && (
         <div className="text-center my-10">
           <p className="text-2xl text-slate-500">
             Scroll down to load more Pokemons

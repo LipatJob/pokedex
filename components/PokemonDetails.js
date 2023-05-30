@@ -6,6 +6,7 @@ import TypePill from "./TypePill";
 import StatBar from "./StatBar";
 import useAsyncData from "@/utils/useAsyncData";
 import { getPokemonDetails } from "@/services/pokemonService";
+import Loading from "./Loading";
 
 export default function PokemonDetails({ id, setId, previous, next, onClose }) {
   const data = useAsyncData(getPokemonDetails);
@@ -53,7 +54,11 @@ export default function PokemonDetails({ id, setId, previous, next, onClose }) {
           >
             <GrClose />
           </button>
-          {data.loading && <div className="h-20 w-20">Loading</div>}
+          {data.loading && (
+            <div className="w-full flex justify-center my-4">
+              <Loading />
+            </div>
+          )}
           {data.data && (
             <div>
               <div
