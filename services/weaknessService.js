@@ -18,6 +18,7 @@ const weaknessTable = {
   fairy: ["poison", "steel", "fire"],
   dark: ["fighting", "dark", "fairy"],
 };
+
 const getWeaknesses = (types) => {
   const weaknesses = [
     ...new Set([].concat(...types.map((e) => weaknessTable[e]))),

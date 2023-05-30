@@ -7,11 +7,7 @@ const getPokemons = async (filterBy = "", sortBy = "ID_ASC", page = 1) => {
   const data = await asyncPipe(
     (e) => filter(e, filterBy),
     (e) => sort(e, sortBy),
-    (e) => paginate(e, page),
-    async (e) => ({
-      ...e,
-      data: await getAllPokemonDetails(e.data.map((f) => f.id)),
-    })
+    (e) => paginate(e, page)
   )(pokemons);
   return data;
 };

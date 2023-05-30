@@ -27,7 +27,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-slate-100 w-full h-full min-h-[105vh] main-content">
+    <div className="bg-slate-100 w-full h-full min-h-[110vh] main-content">
       <div className="max-w-screen-xl mx-auto px-4 ">
         <div
           className="flex flex-row py-6 items-center gap-3 cursor-pointer"
@@ -53,7 +53,6 @@ export default function Home() {
             />
           </div>
         )}
-
         <PokemonList
           sortBy={sortBy}
           filterBy={filterBy}
